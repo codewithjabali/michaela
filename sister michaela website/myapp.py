@@ -1,5 +1,6 @@
 from flask import Flask, render_template, redirect, request, url_for, session
 
+
 app = Flask(__name__, template_folder="templates")
 app.secret_key = "ABDUL JABAL AL WAHAB"
 
@@ -53,4 +54,5 @@ def logout():
     return redirect(url_for("home"))
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(host="0.0.0.0")
+
