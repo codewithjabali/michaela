@@ -1,0 +1,830 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sister Michaela Girls Secondary School</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        /* Custom CSS Variables for easy color changes */
+:root {
+    --primary-dark: #2C3E50; /* Deep Navy Blue */
+    --accent-gold: #B8860B; /* Muted Gold/Dark Goldenrod */
+    --text-dark: #333333;
+    --text-light: #6C7A89; /* Slate Gray */
+    --bg-light: #F8F8F8; /* Very light gray */
+    --white: #FFFFFF;
+    --border-light: #E0E0E0;
+}
+
+/* Base Body Styles - Mobile First */
+body {
+    font-family: 'Lato', sans-serif; /* Clean sans-serif for body */
+    margin: 0;
+    padding: 0;
+    line-height: 1.6;
+    color: var(--text-dark);
+    background-color: var(--bg-light);
+    overflow-x: hidden; /* Prevent horizontal scroll on mobile */
+    scroll-behavior: smooth;
+}
+
+/* --- Navigation Bar --- */
+nav {
+    background-color: var(--primary-dark);
+    color: var(--white);
+    padding: 1rem 1.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    flex-wrap: wrap; /* Allows wrapping on smaller screens */
+}
+
+nav .logo {
+    font-family: 'Playfair Display', serif; /* Elegant serif for logo */
+    font-size: 1.3rem; /* Adjusted for mobile */
+    font-weight: 700;
+    margin: 0;
+    line-height: 1.2;
+    color: var(--white);
+    flex-shrink: 0; /* Prevents logo from shrinking */
+}
+
+nav .logo i {
+    margin-right: 8px;
+    color: var(--accent-gold);
+    font-size: 1.6rem;
+}
+
+/* Mobile Menu Toggle (Hamburger) */
+.menu-toggle {
+    display: flex; /* Show by default on mobile */
+    flex-direction: column;
+    justify-content: space-around;
+    width: 30px;
+    height: 25px;
+    cursor: pointer;
+    z-index: 1001; /* Ensure it's above nav links */
+}
+
+.menu-toggle .bar {
+    width: 100%;
+    height: 3px;
+    background-color: var(--accent-gold);
+    transition: all 0.3s ease-in-out;
+    border-radius: 2px;
+}
+
+/* Hamburger to X animation */
+.menu-toggle.is-active .bar:nth-child(2) {
+    opacity: 0;
+}
+.menu-toggle.is-active .bar:nth-child(1) {
+    transform: translateY(11px) rotate(45deg);
+}
+.menu-toggle.is-active .bar:nth-child(3) {
+    transform: translateY(-11px) rotate(-45deg);
+}
+
+/* Navigation Links (Hidden by default on mobile) */
+.nav-links {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: none; /* Hidden by default */
+    flex-direction: column;
+    width: 100%; /* Take full width */
+    background-color: var(--primary-dark);
+    text-align: center;
+    position: absolute; /* Position relative to nav */
+    top: 100%; /* Below the nav bar */
+    left: 0;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
+    transform: translateY(-10px); /* Start slightly up */
+    opacity: 0; /* Start invisible */
+    pointer-events: none; /* Disable interaction when hidden */
+}
+
+.nav-links.active {
+    display: flex; /* Show when active */
+    transform: translateY(0); /* Slide down */
+    opacity: 1; /* Fade in */
+    pointer-events: all; /* Enable interaction */
+}
+
+.nav-links li {
+    margin: 10px 0; /* Vertical spacing */
+    padding: 10px 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1); /* Separator */
+}
+
+.nav-links li:last-child {
+    border-bottom: none;
+}
+
+.nav-links li a {
+    color: var(--white);
+    text-decoration: none;
+    font-weight: 400;
+    font-size: 1.1rem;
+    transition: color 0.3s ease;
+    display: block; /* Make link clickable across padding */
+}
+
+.nav-links li a:hover {
+    color: var(--accent-gold);
+}
+
+/* Nav Buttons (Hidden by default on mobile, shown with menu) */
+.nav-buttons {
+    display: none; /* Hidden by default */
+    flex-direction: column;
+    width: 100%;
+    margin-top: 10px; /* Space from links */
+    background-color: var(--primary-dark);
+    padding-bottom: 1rem;
+    transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
+    transform: translateY(-10px); /* Start slightly up */
+    opacity: 0; /* Start invisible */
+    pointer-events: none; /* Disable interaction when hidden */
+}
+
+.nav-buttons.active {
+    display: flex; /* Show when active */
+    transform: translateY(0); /* Slide down */
+    opacity: 1; /* Fade in */
+    pointer-events: all; /* Enable interaction */
+}
+
+.nav-buttons .btn {
+    width: calc(100% - 40px); /* Account for padding */
+    margin: 8px auto; /* Center buttons */
+    padding: 12px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 1rem;
+    transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+    border: none;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.nav-buttons .btn a {
+    color: var(--white);
+    text-decoration: none;
+    display: block; /* Make link fill button */
+}
+
+.primary-btn {
+    background-color: var(--accent-gold);
+}
+
+.primary-btn:hover {
+    background-color: #a37909; /* Slightly darker gold */
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+.secondary-btn {
+    background-color: #6C7A89; /* Muted gray for secondary */
+}
+
+.secondary-btn:hover {
+    background-color: #5a6572; /* Slightly darker gray */
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+
+/* --- Main Content --- */
+.hero-section {
+    text-align: center;
+    padding: 60px 20px 40px; /* More top padding */
+    background: linear-gradient(135deg, var(--bg-light) 0%, var(--white) 100%);
+}
+
+h1 {
+    font-family: 'Playfair Display', serif;
+    color: var(--primary-dark);
+    margin-top: 0;
+    margin-bottom: 15px;
+    font-size: 2.2rem; /* Mobile default */
+    font-weight: 700;
+    line-height: 1.2;
+}
+
+.section-title { /* For specific h1s acting as section titles */
+    text-align: center;
+    color: var(--primary-dark);
+    margin-top: 60px;
+    margin-bottom: 30px;
+    font-size: 2rem;
+    font-weight: 700;
+    position: relative;
+    padding-bottom: 10px;
+}
+
+.section-title::after {
+    content: '';
+    position: absolute;
+    left: 50%;
+    bottom: 0;
+    transform: translateX(-50%);
+    width: 80px; /* Underline length */
+    height: 3px;
+    background-color: var(--accent-gold);
+    border-radius: 2px;
+}
+
+
+.intro-paragraph, section p {
+    text-align: center;
+    margin-bottom: 25px;
+    font-size: 1.05rem; /* Mobile default */
+    color: var(--text-light);
+    max-width: 700px;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 0 15px;
+}
+
+/* Content Grid for Sections */
+.content-grid {
+    display: grid;
+    grid-template-columns: 1fr; /* Single column on mobile */
+    gap: 25px;
+    padding: 25px 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.card {
+    background-color: var(--white);
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+    padding: 30px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    display: flex;
+    flex-direction: column; /* For vertical alignment of content */
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+}
+
+.card h2 {
+    font-family: 'Playfair Display', serif;
+    color: var(--primary-dark);
+    font-size: 1.6rem; /* Mobile default */
+    margin-top: 0;
+    margin-bottom: 15px;
+    text-align: left;
+    border-bottom: 1px solid var(--border-light); /* Subtle separator */
+    padding-bottom: 10px;
+}
+
+.card ul {
+    list-style: none;
+    padding: 0;
+    flex-grow: 1; /* Ensures lists take up available space */
+}
+
+.card ul li {
+    margin-bottom: 10px;
+    font-size: 1rem;
+    color: var(--text-dark);
+    position: relative;
+    padding-left: 25px; /* Space for custom bullet */
+}
+
+.card ul li::before {
+    content: "\2022"; /* Unicode bullet */
+    color: var(--accent-gold);
+    font-weight: bold;
+    display: inline-block;
+    width: 1em;
+    margin-left: -1em;
+    position: absolute;
+    left: 0;
+    top: 0;
+    font-size: 1.2em;
+}
+
+.card p {
+    text-align: left; /* Override global p alignment */
+    font-size: 0.95rem; /* Slightly smaller for card text */
+    color: var(--text-light);
+    margin-bottom: 15px; /* Space between paragraphs in cards */
+    padding: 0; /* Remove extra padding */
+}
+
+.card p:last-child {
+    margin-bottom: 0;
+}
+
+.card p article {
+    font-weight: 500; /* Slightly bolder for introductory text */
+}
+
+.card p ol {
+    margin-left: 20px;
+    padding-left: 0;
+    list-style-type: decimal; /* Ensure numbered list */
+}
+
+.card p ol li {
+    margin-bottom: 8px;
+    color: var(--text-light);
+    font-size: 0.9rem;
+    line-height: 1.5;
+    padding-left: 0;
+}
+
+/* --- Footer --- */
+footer {
+    background-color: var(--primary-dark);
+    color: var(--white);
+    padding: 40px 20px;
+    text-align: center;
+    margin-top: 60px;
+}
+
+.footer-container {
+    display: flex;
+    flex-direction: column; /* Stack columns on mobile */
+    align-items: center; /* Center items */
+    max-width: 1200px;
+    margin: 0 auto;
+    padding-bottom: 25px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.footer-info,
+.footer-links {
+    width: 100%; /* Full width on mobile */
+    margin-bottom: 30px;
+    text-align: center; /* Center text in sections */
+}
+
+.footer-info h3,
+.footer-links h3 {
+    font-family: 'Playfair Display', serif;
+    color: var(--accent-gold);
+    margin-bottom: 15px;
+    font-size: 1.5rem;
+    position: relative;
+    display: inline-block; /* To center the pseudo-element underline */
+    padding-bottom: 5px;
+}
+
+.footer-info h3::after,
+.footer-links h3::after {
+    content: '';
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: 0;
+    width: 50px; /* Shorter underline */
+    height: 2px;
+    background-color: var(--accent-gold);
+}
+
+
+.footer-info p {
+    text-align: center; /* Center text on mobile */
+    margin-bottom: 8px;
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 0.95rem;
+    line-height: 1.4;
+    max-width: none; /* Override general p max-width */
+    padding: 0; /* Override general p padding */
+}
+
+.footer-info p i {
+    margin-right: 10px;
+    color: var(--accent-gold);
+}
+
+.footer-links ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.footer-links ul li {
+    margin-bottom: 8px;
+}
+
+.footer-links ul li a {
+    color: rgba(255, 255, 255, 0.8);
+    text-decoration: none;
+    transition: color 0.3s ease;
+    font-size: 0.95rem;
+}
+
+.footer-links ul li a:hover {
+    color: var(--accent-gold);
+    text-decoration: underline;
+}
+
+.copyright {
+    margin-top: 25px;
+    font-size: 0.85rem;
+    color: rgba(255, 255, 255, 0.6);
+    text-align: center;
+}
+
+/* --- Desktop and Tablet Styles (min-width media queries for mobile-first) --- */
+
+@media (min-width: 768px) {
+    /* Adjustments for Tablets */
+    nav {
+        padding: 1rem 2rem;
+        flex-wrap: nowrap; /* Prevent wrapping on tablets */
+    }
+
+    nav .logo {
+        font-size: 1.5rem;
+    }
+
+    .menu-toggle {
+        display: none; /* Hide hamburger on larger screens */
+    }
+
+    .nav-links {
+        display: flex; /* Show navigation links horizontally */
+        flex-direction: row;
+        width: auto;
+        position: static; /* Remove absolute positioning */
+        box-shadow: none;
+        transform: none;
+        opacity: 1;
+        pointer-events: all;
+        margin-left: auto; /* Push links to the left of buttons */
+    }
+
+    .nav-links li {
+        margin: 0 15px; /* Horizontal spacing */
+        padding: 0;
+        border-bottom: none;
+    }
+
+    .nav-links li a {
+        font-size: 1rem;
+        position: relative; /* For underline effect */
+        padding-bottom: 5px; /* Space for underline */
+    }
+    .nav-links li a::after {
+        content: '';
+        position: absolute;
+        width: 0;
+        height: 2px;
+        background-color: var(--accent-gold);
+        bottom: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        transition: width 0.3s ease-out;
+    }
+    .nav-links li a:hover::after {
+        width: 100%;
+    }
+
+
+    .nav-buttons {
+        display: flex; /* Show buttons horizontally */
+        flex-direction: row;
+        width: auto;
+        margin-top: 0;
+        background-color: transparent; /* No background */
+        padding-bottom: 0;
+        transform: none;
+        opacity: 1;
+        pointer-events: all;
+    }
+
+    .nav-buttons .btn {
+        width: auto;
+        margin: 0 5px; /* Spacing between buttons */
+    }
+
+    h1 {
+        font-size: 3rem;
+    }
+
+    .section-title {
+        font-size: 2.5rem;
+    }
+
+    .intro-paragraph, section p {
+        font-size: 1.1rem;
+        padding: 0; /* Remove mobile-specific padding */
+    }
+
+    .content-grid {
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* 2-3 columns */
+        gap: 30px;
+        padding: 40px;
+    }
+
+    .card h2 {
+        font-size: 1.8rem;
+    }
+
+    .card ul li {
+        font-size: 1.05rem;
+    }
+
+    .card p {
+        font-size: 1rem;
+    }
+
+    .footer-container {
+        flex-direction: row; /* Columns side-by-side */
+        justify-content: space-around;
+        text-align: left;
+    }
+
+    .footer-info,
+    .footer-links {
+        width: auto; /* Auto width */
+        margin-bottom: 0;
+        text-align: left; /* Align text left */
+    }
+
+    .footer-info h3::after,
+    .footer-links h3::after {
+        left: 0;
+        transform: translateX(0); /* Align underline left */
+    }
+
+    .footer-info p {
+        text-align: left;
+    }
+}
+
+@media (min-width: 1024px) {
+    /* Adjustments for Desktops */
+    nav .logo {
+        font-size: 1.6rem;
+    }
+
+    .nav-links li {
+        margin: 0 20px;
+    }
+
+    h1 {
+        font-size: 3.5rem;
+    }
+
+    .section-title {
+        font-size: 3rem;
+    }
+
+    .intro-paragraph {
+        font-size: 1.2rem;
+    }
+
+    .content-grid {
+        grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); /* Larger columns */
+        gap: 40px;
+        padding: 50px;
+    }
+
+    .card h2 {
+        font-size: 2rem;
+    }
+
+    /* Specific adjustment for "Student Achievements" cards to be wider */
+    #hey .card {
+        grid-column: span 1; /* Default to 1 column */
+    }
+    #hey .card.wide-card {
+        grid-column: span 2; /* Make these cards span 2 columns on larger screens */
+    }
+    /* If there are only 3 wide-cards, they'll naturally fill 2/2/2 or 2/2/1. Let's make them 1 full row or a combination. */
+    #hey {
+        grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    }
+    #hey .wide-card {
+        /* If you want them to be on their own rows, you could do: */
+        /* grid-column: 1 / -1; */ /* Makes them span full width */
+    }
+
+
+    footer {
+        padding: 50px 20px;
+    }
+}
+    </style>
+</head>
+<body>
+    <nav>
+        <p class="logo"><i class="fa fa-graduation-cap"></i>Sister Michaela <br>
+            Girls Secondary <br> School
+        </p>
+        <div class="menu-toggle" id="mobile-menu">
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+        </div>
+        <ul class="nav-links">
+            <li><a href="/homepage">Home</a></li>
+            <li><a href="/about">About</a></li>
+            <li><a href="/academics">Academics</a></li>
+            <li><a href="/schoollife">School life</a></li>
+        </ul>
+        <div class="nav-buttons">
+            <button class="btn primary-btn"><a href="resume.pdf" download>Apply Now</a></button>
+            <button class="btn secondary-btn"><a href="/logout">Logout</a></button>
+        </div>
+    </nav>
+
+    <main>
+        <section class="hero-section">
+            <h1>School Life & Activities</h1>
+            <p class="intro-paragraph">Beyond academics, our lively school provides
+                numerous opportunities for personal development,
+                building friendships and exploration.
+            </p>
+        </section>
+
+
+        <div id="school" class="content-grid">
+            <section class="card">
+                <h2>Games</h2>
+                <ul>
+                    <li>Football</li>
+                    <li>Volleyball</li>
+                    <li>Athletics</li>
+                    <li>Netball</li>
+                </ul>
+            </section>
+            <section class="card">
+                <h2>Arts and Culture</h2>
+                <ul>
+                    <li>Choir</li>
+                    <li>Drama Club</li>
+                    <li>Art Society</li>
+                    <li>Dance</li>
+                    <li>Photography</li>
+                </ul>
+            </section>
+            <section class="card">
+                <h2>Leadership</h2>
+                <ul>
+                    <li>Student Council</li>
+                    <li>Peer Mentoring</li>
+                    <li>Community Service</li>
+                    <li>Debate Team</li>
+                </ul>
+            </section>
+            <section class="card">
+                <h2>Special Interests</h2>
+                <ul>
+                    <li>School Newspaper</li>
+                    <li>Science Club</li>
+                    <li>Scout Club</li>
+                    <li>Environmental Club</li>
+                    <li>Poetry Club</li>
+                </ul>
+            </section>
+        </div>
+
+        <h1 class="section-title">School Traditions</h1>
+        <div id="Achievements" class="content-grid">
+            <section class="card">
+                <h2>Founders Day</h2>
+                <p>An annual event celebrating our school's history and accomplishments,
+                    recognised as Sr. Michaela Day.</p>
+            </section>
+            <section class="card">
+                <h2>Seniors Ceremonies</h2>
+                <p>Special tradition marking the transition to senior year</p>
+            </section>
+            <section class="card">
+                <h2>Performance Ceremonies</h2>
+                <p>The school hosts a celebration to recognise
+                    top-performing students and highlights the previous
+                    year's academic results.
+                </p>
+            </section>
+        </div>
+
+        <h1 class="section-title">Student Achievements</h1>
+        <div id="hey" class="content-grid">
+            <section class="card wide-card">
+                <h2>KCSE Performance</h2>
+                <p>Our school continues to excel in academic performance,
+                    as reflected in the outstanding results of <BR>
+                    the Kenya Certificate of Secondary Education (KCSE)
+                    examinations. <br>
+                    Year after year, our students demonstrate dedication, discipline
+                    and resilience, consistently achieving impressive grades that place our school
+                    among the top-performing schools in the region. These results are a testament to
+                    the hard work of our learners, the commitment of our teachers, and the strong support from
+                    parents and the entire school community. Many of our candidates qualify for university admissions,
+                    while others proceed to reputable colleges and technical institutions, ready to pursue their career aspirations.
+                    The success of our School in KCSE not only reflects academic excellence but also underscores our commitment
+                    to nurturing well-rounded individuals prepared to make meaningful contributions to the society.
+                </p>
+            </section>
+            <section class="card wide-card">
+                <h2>Arts and Talent Recognition</h2>
+                <p>Our school proudly embraces the arts as a vital part of holistic education.
+                    Through music, Drama, Visual Arts, and Cultural Performance,
+                    students are given the opportunity to express their creativity,
+                    build confidence and develop their talents beyond the classroom.
+                    Over the years, our school has earned recognition at various levels for
+                    excellence in the arts. From winning accolades at music and Drama festivals
+                    to showcasing outstanding artwork in regional exhibitions,
+                    our learners consistently make their mark. This recognition highlights
+                    not only the talent within our school but also our dedication
+                    to nurturing creativity, cultural appreciation, and self-expression as
+                    key elements of a well-rounded education.</p>
+            </section>
+            <section class="card wide-card">
+                <h2>Community Impact of our School</h2>
+                <p>
+                    <article> Our school plays a vital role in shaping not only the lives of students but also the well-being and development of the entire community. Through education, outreach, and collaboration, we strive to create a positive and lasting impact beyond our campus walls.</article>
+                    <ol>
+                        <li> Educational Excellence</li>
+                        By providing a strong academic foundation, our school empowers students to become thoughtful, skilled, and responsible citizens. The success of our students contributes to a more educated and capable community, helping to break cycles of poverty and open doors to new opportunities.
+
+                        <li> Community Engagement</li>
+                        We actively engage with local organizations, families, and residents through events, service projects, and open forums. Whether it’s hosting town hall meetings, cultural celebrations, or charity drives, our school serves as a hub for connection and dialogue.
+
+                        <li> Supporting Families</li>
+                        Our school offers more than education—its a support system for families. Through counseling services, food programs, and after-school care, we help ease the challenges many families face and ensure children are equipped to succeed both inside and outside the classroom.
+
+                        <li> Youth Development and Leadership</li>
+                        We nurture leadership through student councils, clubs, and volunteer opportunities. These experiences teach responsibility and civic engagement, encouraging students to become active contributors to the community now and in the future.
+
+                        <li> Economic and Social Contributions</li>
+                        Our school creates jobs, supports local businesses through partnerships and purchasing, and attracts families to the area. Strong schools often correlate with stronger neighborhoods, higher property values, and safer communities.
+
+                        <li> Lifelong Learning and Inclusion</li>
+                        We offer opportunities for lifelong learning, including adult education, community classes, and inclusive programs for diverse learners. This promotes unity, understanding, and progress across generations.
+                    </ol>
+                </p>
+            </section>
+        </div>
+    </main>
+
+    <footer>
+        <div class="footer-container">
+            <div class="footer-info">
+                <h3>Contact Us</h3>
+                <p><i class="fa fa-map-marker"></i> Sister Michaela Girls Secondary School,<br>Kisii County, Kenya</p>
+                <p><i class="fa fa-phone"></i> +254 717766093</p>
+                <p><i class="fa fa-envelope"></i> srmichaelagirls@gmail.com </p>
+                <p>Address: P.O BOX 1721-40200, Kisii</p>
+            </div>
+            <div class="footer-links">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="/homepage">Home</a></li>
+                    <li><a href="/about">About</a></li>
+                    <li><a href="/academics">Academics</a></li>
+                    <li><a href="/schoollife">School Life</a></li>
+                </ul>
+            </div>
+        </div>
+        <p class="copyright">
+            &copy; 2025 Sister Michaela Girls School. All rights reserved.
+        </p>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const mobileMenu = document.getElementById('mobile-menu');
+            const navLinks = document.querySelector('.nav-links');
+            const navButtons = document.querySelector('.nav-buttons');
+
+            if (mobileMenu && navLinks && navButtons) {
+                mobileMenu.addEventListener('click', function() {
+                    navLinks.classList.toggle('active');
+                    navButtons.classList.toggle('active');
+                    mobileMenu.classList.toggle('is-active'); // For hamburger animation
+                });
+
+                // Optional: Close menu when a link is clicked
+                document.querySelectorAll('.nav-links li a').forEach(item => {
+                    item.addEventListener('click', () => {
+                        navLinks.classList.remove('active');
+                        navButtons.classList.remove('active');
+                        mobileMenu.classList.remove('is-active');
+                    });
+                });
+            }
+        });
+    </script>
+</body>
+</html>

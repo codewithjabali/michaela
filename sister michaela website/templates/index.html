@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Login - Sister Michaela Girls Secondary School</title>
+    
+    <link rel="stylesheet" href="style.css">
+
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <style>
+      /* --- New CSS for Login Page --- */
+
+.login-page {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh; /* Ensures the page takes at least the full viewport height */
+    background-color: limegreen;
+    padding: 20px; /* Add some padding for smaller screens */
+    box-sizing: border-box; /* Include padding in element's total width and height */
+}
+
+.form-container-centered {
+    width: 100%;
+    max-width: 450px; /* Max width for the form container */
+    text-align: center;
+}
+
+.form-container-centered .section-title {
+    margin-top: 0; /* Remove top margin as it's centered vertically */
+    margin-bottom: 30px;
+    font-size: 2.5rem; /* Larger title for login page */
+}
+
+.form-container-centered .section-title::after {
+    width: 60px; /* Adjust underline length */
+}
+
+
+.form-section.card { /* Reusing .card for consistent styling */
+    padding: 40px 30px;
+}
+
+.form-section form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px; /* Space between form elements */
+}
+
+.form-section input[type="text"],
+.form-section input[type="email"],
+.form-section input[type="password"] { /* Added password type for future use */
+    width: 100%; /* Take full width of the form container */
+    padding: 15px;
+    border: 1px solid var(--border-light);
+    border-radius: 8px;
+    font-size: 1rem;
+    color: var(--text-dark);
+    background-color: var(--bg-light);
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    box-sizing: border-box; /* Include padding in element's total width and height */
+}
+
+.form-section input::placeholder {
+    color: var(--text-light);
+    opacity: 0.8;
+}
+
+.form-section input:focus {
+    border-color: var(--accent-gold);
+    box-shadow: 0 0 0 3px rgba(184, 134, 11, 0.2); /* Light gold glow on focus */
+    outline: none;
+}
+
+.form-section .btn {
+    width: 100%; /* Make button full width */
+    padding: 15px;
+    font-size: 1.1rem;
+    font-weight: 700;
+    border-radius: 8px;
+}
+
+/* Ensure existing button styles apply */
+.form-section .primary-btn {
+    background-color: var(--accent-gold);
+    color: var(--white);
+}
+
+.form-section .primary-btn:hover {
+    background-color: #a37909; /* Darker gold on hover */
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+/* You might want to adjust the general `h1` styling if it affects other pages */
+/* For login page, ensure `h1` is specifically targeted with `.section-title` */
+    </style>
+</head>
+<body>
+    <main class="login-page">
+        <div class="container form-container-centered">
+            <h1 class="section-title">LOGIN</h1>
+            <div class="form-section card"> <form action="/login" method="POST">
+                    <input type="text" placeholder="Username" name="text" required>
+                    <input type="email" placeholder="Email" name="email" required>
+                    <button type="submit" class="btn primary-btn">LOGIN</button>
+                </form>
+            </div>
+        </div>
+    </main>
+</body>
+</html>

@@ -1,0 +1,940 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Why Choose Us? - Sister Michaela Girls Secondary School</title>
+    
+    <link rel="stylesheet" href="style.css">
+
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    
+    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.8/css/line.css">
+<style>
+  /* Custom CSS Variables for easy color changes */
+:root {
+    --primary-dark: #2C3E50; /* Deep Navy Blue */
+    --accent-gold: #B8860B; /* Muted Gold/Dark Goldenrod */
+    --text-dark: #333333;
+    --text-light: #6C7A89; /* Slate Gray */
+    --bg-light: #F8F8F8; /* Very light gray */
+    --white: #FFFFFF;
+    --border-light: #E0E0E0;
+}
+
+/* Base Body Styles - Mobile First */
+body {
+    font-family: 'Lato', sans-serif; /* Clean sans-serif for body */
+    margin: 0;
+    padding: 0;
+    line-height: 1.6;
+    color: var(--text-dark);
+    background-color: var(--bg-light);
+    overflow-x: hidden; /* Prevent horizontal scroll on mobile */
+    scroll-behavior: smooth;
+}
+
+/* Global Heading Styles */
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Playfair Display', serif; /* Elegant serif for headings */
+    color: var(--primary-dark);
+    margin-top: 0;
+    margin-bottom: 15px;
+    line-height: 1.2;
+}
+
+/* Global Paragraph Styles */
+p {
+    font-size: 1rem;
+    color: var(--text-dark);
+    line-height: 1.6;
+}
+
+/* General Link Styling (for elements outside nav/buttons) */
+a {
+    color: var(--primary-dark);
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+a:hover {
+    color: var(--accent-gold);
+}
+
+/* Global Button Styles */
+.btn {
+    padding: 12px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 1rem;
+    transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+    border: none;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.btn a {
+    color: var(--white); /* Default text color for button links */
+    text-decoration: none;
+    display: block; /* Make link fill button */
+}
+
+.primary-btn {
+    background-color: var(--accent-gold);
+}
+
+.primary-btn:hover {
+    background-color: #a37909; /* Slightly darker gold */
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+.secondary-btn {
+    background-color: #6C7A89; /* Muted gray for secondary */
+}
+
+.secondary-btn:hover {
+    background-color: #5a6572; /* Slightly darker gray */
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+
+/* --- Navigation Bar --- */
+nav {
+    background-color: var(--primary-dark);
+    color: var(--white);
+    padding: 1rem 1.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    flex-wrap: wrap; /* Allows wrapping on smaller screens */
+}
+
+nav .logo {
+    font-family: 'Playfair Display', serif; /* Elegant serif for logo */
+    font-size: 1.3rem; /* Adjusted for mobile */
+    font-weight: 700;
+    margin: 0;
+    line-height: 1.2;
+    color: var(--white);
+    flex-shrink: 0; /* Prevents logo from shrinking */
+}
+
+nav .logo i {
+    margin-right: 8px;
+    color: var(--accent-gold);
+    font-size: 1.6rem;
+}
+
+/* Mobile Menu Toggle (Hamburger) */
+.menu-toggle {
+    display: flex; /* Show by default on mobile */
+    flex-direction: column;
+    justify-content: space-around;
+    width: 30px;
+    height: 25px;
+    cursor: pointer;
+    z-index: 1001; /* Ensure it's above nav links */
+}
+
+.menu-toggle .bar {
+    width: 100%;
+    height: 3px;
+    background-color: var(--accent-gold);
+    transition: all 0.3s ease-in-out;
+    border-radius: 2px;
+}
+
+/* Hamburger to X animation */
+.menu-toggle.is-active .bar:nth-child(2) {
+    opacity: 0;
+}
+.menu-toggle.is-active .bar:nth-child(1) {
+    transform: translateY(11px) rotate(45deg);
+}
+.menu-toggle.is-active .bar:nth-child(3) {
+    transform: translateY(-11px) rotate(-45deg);
+}
+
+/* Navigation Links (Hidden by default on mobile) */
+.nav-links {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: none; /* Hidden by default */
+    flex-direction: column;
+    width: 100%; /* Take full width */
+    background-color: var(--primary-dark);
+    text-align: center;
+    position: absolute; /* Position relative to nav */
+    top: 100%; /* Below the nav bar */
+    left: 0;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
+    transform: translateY(-10px); /* Start slightly up */
+    opacity: 0; /* Start invisible */
+    pointer-events: none; /* Disable interaction when hidden */
+}
+
+.nav-links.active {
+    display: flex; /* Show when active */
+    transform: translateY(0); /* Slide down */
+    opacity: 1; /* Fade in */
+    pointer-events: all; /* Enable interaction */
+}
+
+.nav-links li {
+    margin: 10px 0; /* Vertical spacing */
+    padding: 10px 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1); /* Separator */
+}
+
+.nav-links li:last-child {
+    border-bottom: none;
+}
+
+.nav-links li a {
+    color: var(--white);
+    text-decoration: none;
+    font-weight: 400;
+    font-size: 1.1rem;
+    transition: color 0.3s ease;
+    display: block; /* Make link clickable across padding */
+}
+
+.nav-links li a:hover {
+    color: var(--accent-gold);
+}
+
+/* Nav Buttons (Hidden by default on mobile, shown with menu) */
+.nav-buttons {
+    display: none; /* Hidden by default */
+    flex-direction: column;
+    width: 100%;
+    margin-top: 10px; /* Space from links */
+    background-color: var(--primary-dark);
+    padding-bottom: 1rem;
+    transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
+    transform: translateY(-10px); /* Start slightly up */
+    opacity: 0; /* Start invisible */
+    pointer-events: none; /* Disable interaction when hidden */
+}
+
+.nav-buttons.active {
+    display: flex; /* Show when active */
+    transform: translateY(0); /* Slide down */
+    opacity: 1; /* Fade in */
+    pointer-events: all; /* Enable interaction */
+}
+
+.nav-buttons .btn {
+    width: calc(100% - 40px); /* Account for padding */
+    margin: 8px auto; /* Center buttons */
+    padding: 12px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 1rem;
+    transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+    border: none;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.nav-buttons .btn a {
+    color: var(--white);
+    text-decoration: none;
+    display: block; /* Make link fill button */
+}
+
+/* --- Main Content Layout --- */
+main {
+    padding: 20px 0; /* Vertical padding for content sections */
+}
+
+/* Section Title Style (for main h1s on pages) */
+.section-title {
+    text-align: center;
+    color: var(--primary-dark);
+    margin-top: 60px;
+    margin-bottom: 30px;
+    font-size: 2.2rem; /* Mobile default */
+    font-weight: 700;
+    position: relative;
+    padding-bottom: 10px;
+}
+
+.section-title::after {
+    content: '';
+    position: absolute;
+    left: 50%;
+    bottom: 0;
+    transform: translateX(-50%);
+    width: 80px; /* Underline length */
+    height: 3px;
+    background-color: var(--accent-gold);
+    border-radius: 2px;
+}
+
+/* Intro Paragraphs for main sections */
+.intro-paragraph {
+    text-align: center;
+    margin-bottom: 25px;
+    font-size: 1.05rem; /* Mobile default */
+    color: var(--text-light);
+    max-width: 700px;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 0 15px;
+}
+
+/* General Content Grid for Cards */
+.content-grid {
+    display: grid;
+    grid-template-columns: 1fr; /* Single column on mobile */
+    gap: 25px;
+    padding: 25px 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* Card Styling */
+.card {
+    background-color: var(--white);
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+    padding: 30px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    display: flex;
+    flex-direction: column; /* For vertical alignment of content */
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+}
+
+/* Headings within Cards */
+.card h2 {
+    font-family: 'Playfair Display', serif;
+    color: var(--primary-dark);
+    font-size: 1.6rem; /* Mobile default */
+    margin-top: 0;
+    margin-bottom: 15px;
+    text-align: left;
+    border-bottom: 1px solid var(--border-light); /* Subtle separator */
+    padding-bottom: 10px;
+}
+
+/* Lists within Cards */
+.card ul {
+    list-style: none;
+    padding: 0;
+    flex-grow: 1; /* Ensures lists take up available space */
+}
+
+.card ul li {
+    margin-bottom: 10px;
+    font-size: 1rem;
+    color: var(--text-dark);
+    position: relative;
+    padding-left: 25px; /* Space for custom bullet */
+}
+
+.card ul li::before {
+    content: "\2022"; /* Unicode bullet */
+    color: var(--accent-gold);
+    font-weight: bold;
+    display: inline-block;
+    width: 1em;
+    margin-left: -1em;
+    position: absolute;
+    left: 0;
+    top: 0;
+    font-size: 1.2em;
+}
+
+/* Paragraphs within Cards */
+.card p {
+    text-align: left; /* Override global p alignment for cards */
+    font-size: 0.95rem; /* Slightly smaller for card text */
+    color: var(--text-light);
+    margin-bottom: 15px; /* Space between paragraphs in cards */
+    padding: 0; /* Remove extra padding */
+}
+
+.card p:last-child {
+    margin-bottom: 0;
+}
+
+/* Specific styling for the Achievement cards (from Home page) */
+.achievement-card h2 {
+    font-size: 2.5rem; /* Larger numbers */
+    text-align: center;
+    border-bottom: none;
+    margin-bottom: 5px;
+    color: var(--accent-gold);
+}
+.achievement-card p {
+    text-align: center;
+    font-size: 1.1rem;
+    margin-bottom: 0;
+    color: var(--text-dark);
+}
+
+/* --- Login Page Specific Styles --- */
+.login-page {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh; /* Ensures the page takes at least the full viewport height */
+    background: linear-gradient(135deg, var(--bg-light) 0%, var(--white) 100%);
+    padding: 20px; /* Add some padding for smaller screens */
+    box-sizing: border-box; /* Include padding in element's total width and height */
+}
+
+.form-container-centered {
+    width: 100%;
+    max-width: 450px; /* Max width for the form container */
+    text-align: center;
+}
+
+.form-container-centered .section-title {
+    margin-top: 0; /* Remove top margin as it's centered vertically */
+    margin-bottom: 30px;
+    font-size: 2.5rem; /* Larger title for login page */
+}
+
+.form-container-centered .section-title::after {
+    width: 60px; /* Adjust underline length */
+}
+
+.form-section.card { /* Reusing .card for consistent styling */
+    padding: 40px 30px;
+}
+
+.form-section form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px; /* Space between form elements */
+}
+
+.form-section input[type="text"],
+.form-section input[type="email"],
+.form-section input[type="password"] { /* Added password type for future use */
+    width: 100%; /* Take full width of the form container */
+    padding: 15px;
+    border: 1px solid var(--border-light);
+    border-radius: 8px;
+    font-size: 1rem;
+    color: var(--text-dark);
+    background-color: var(--bg-light);
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    box-sizing: border-box; /* Include padding in element's total width and height */
+}
+
+.form-section input::placeholder {
+    color: var(--text-light);
+    opacity: 0.8;
+}
+
+.form-section input:focus {
+    border-color: var(--accent-gold);
+    box-shadow: 0 0 0 3px rgba(184, 134, 11, 0.2); /* Light gold glow on focus */
+    outline: none;
+}
+
+.form-section .btn {
+    width: 100%; /* Make button full width */
+    padding: 15px;
+    font-size: 1.1rem;
+    font-weight: 700;
+    border-radius: 8px;
+}
+
+/* --- Why Us Page Specific Styles (Values & Statements) --- */
+
+/* Adjustments for headings within cards that are not the main section title */
+/* Overrides for text-align and border from generic .card h2 */
+.content-grid .card h2 {
+    text-align: center; /* Center h2s in these specific cards */
+    border-bottom: none; /* No border for these specific h2s */
+    padding-bottom: 0;
+}
+
+/* Specific styling for the cards containing motto, targets, statements */
+.value-card {
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* Vertically center content */
+    align-items: center; /* Horizontally center content */
+    min-height: 150px; /* Ensure a minimum height for consistent card size */
+    text-align: center;
+}
+
+.value-card h2 {
+    font-size: 1.4rem; /* Slightly smaller heading for these cards */
+    margin-bottom: 10px;
+}
+
+.value-display {
+    font-family: 'Playfair Display', serif;
+    font-size: 2rem; /* Large font size for values */
+    font-weight: 700;
+    color: var(--accent-gold); /* Accent color for emphasis */
+    margin: 0;
+    line-height: 1.2;
+    text-align: center;
+}
+
+.statement-text {
+    font-family: 'Lato', sans-serif;
+    font-size: 1.1rem; /* Readable font size for statements */
+    color: var(--text-dark);
+    line-height: 1.5;
+    text-align: center;
+    margin: 0;
+}
+
+
+/* --- Footer --- */
+footer {
+    background-color: var(--primary-dark);
+    color: var(--white);
+    padding: 40px 20px;
+    text-align: center;
+    margin-top: 60px;
+}
+
+.footer-container {
+    display: flex;
+    flex-direction: column; /* Stack columns on mobile */
+    align-items: center; /* Center items */
+    max-width: 1200px;
+    margin: 0 auto;
+    padding-bottom: 25px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.footer-info,
+.footer-links {
+    width: 100%; /* Full width on mobile */
+    margin-bottom: 30px;
+    text-align: center; /* Center text in sections */
+}
+
+.footer-info h3,
+.footer-links h3 {
+    font-family: 'Playfair Display', serif;
+    color: var(--accent-gold);
+    margin-bottom: 15px;
+    font-size: 1.5rem;
+    position: relative;
+    display: inline-block; /* To center the pseudo-element underline */
+    padding-bottom: 5px;
+}
+
+.footer-info h3::after,
+.footer-links h3::after {
+    content: '';
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: 0;
+    width: 50px; /* Shorter underline */
+    height: 2px;
+    background-color: var(--accent-gold);
+}
+
+
+.footer-info p {
+    text-align: center; /* Center text on mobile */
+    margin-bottom: 8px;
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 0.95rem;
+    line-height: 1.4;
+    max-width: none; /* Override general p max-width */
+    padding: 0; /* Override general p padding */
+}
+
+.footer-info p i {
+    margin-right: 10px;
+    color: var(--accent-gold);
+}
+
+.footer-links ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.footer-links ul li {
+    margin-bottom: 8px;
+}
+
+.footer-links ul li a {
+    color: rgba(255, 255, 255, 0.8);
+    text-decoration: none;
+    transition: color 0.3s ease;
+    font-size: 0.95rem;
+}
+
+.footer-links ul li a:hover {
+    color: var(--accent-gold);
+    text-decoration: underline;
+}
+
+.copyright {
+    margin-top: 25px;
+    font-size: 0.85rem;
+    color: rgba(255, 255, 255, 0.6);
+    text-align: center;
+}
+
+/* --- Media Queries for Responsiveness --- */
+
+/* Tablets and larger screens */
+@media (min-width: 768px) {
+    /* Navigation Bar */
+    nav {
+        padding: 1rem 2rem;
+        flex-wrap: nowrap; /* Prevent wrapping on tablets */
+    }
+
+    nav .logo {
+        font-size: 1.5rem;
+    }
+
+    .menu-toggle {
+        display: none; /* Hide hamburger on larger screens */
+    }
+
+    .nav-links {
+        display: flex; /* Show navigation links horizontally */
+        flex-direction: row;
+        width: auto;
+        position: static; /* Remove absolute positioning */
+        box-shadow: none;
+        transform: none;
+        opacity: 1;
+        pointer-events: all;
+        margin-left: auto; /* Push links to the left of buttons */
+    }
+
+    .nav-links li {
+        margin: 0 15px; /* Horizontal spacing */
+        padding: 0;
+        border-bottom: none;
+    }
+
+    .nav-links li a {
+        font-size: 1rem;
+        position: relative; /* For underline effect */
+        padding-bottom: 5px; /* Space for underline */
+    }
+    .nav-links li a::after {
+        content: '';
+        position: absolute;
+        width: 0;
+        height: 2px;
+        background-color: var(--accent-gold);
+        bottom: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        transition: width 0.3s ease-out;
+    }
+    .nav-links li a:hover::after {
+        width: 100%;
+    }
+
+    .nav-buttons {
+        display: flex; /* Show buttons horizontally */
+        flex-direction: row;
+        width: auto;
+        margin-top: 0;
+        background-color: transparent; /* No background */
+        padding-bottom: 0;
+        transform: none;
+        opacity: 1;
+        pointer-events: all;
+    }
+
+    .nav-buttons .btn {
+        width: auto;
+        margin: 0 5px; /* Spacing between buttons */
+    }
+
+    /* Main Content Sections */
+    .section-title {
+        font-size: 2.5rem;
+    }
+
+    .intro-paragraph {
+        font-size: 1.1rem;
+        padding: 0; /* Remove mobile-specific padding */
+    }
+
+    .content-grid {
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* 2-3 columns on tablets */
+        gap: 30px;
+        padding: 40px;
+    }
+
+    .card h2 {
+        font-size: 1.8rem;
+    }
+
+    .card ul li {
+        font-size: 1.05rem;
+    }
+
+    .card p {
+        font-size: 1rem;
+    }
+
+    /* Achievement cards (from Home page) */
+    .achievement-card h2 {
+        font-size: 2.8rem; /* Larger numbers */
+    }
+    .achievement-card p {
+        font-size: 1.15rem;
+    }
+
+    /* Login Page */
+    .form-container-centered .section-title {
+        font-size: 3rem;
+    }
+
+    /* Why Us Page (Values & Statements) */
+    .value-card h2 {
+        font-size: 1.6rem;
+    }
+    .value-display {
+        font-size: 2.2rem;
+    }
+    .statement-text {
+        font-size: 1.2rem;
+    }
+
+    /* Footer */
+    .footer-container {
+        flex-direction: row; /* Columns side-by-side */
+        justify-content: space-around;
+        text-align: left;
+    }
+
+    .footer-info,
+    .footer-links {
+        width: auto; /* Auto width */
+        margin-bottom: 0;
+        text-align: left; /* Align text left */
+    }
+
+    .footer-info h3::after,
+    .footer-links h3::after {
+        left: 0;
+        transform: translateX(0); /* Align underline left */
+    }
+
+    .footer-info p {
+        text-align: left;
+    }
+}
+
+/* Desktops and larger screens */
+@media (min-width: 1024px) {
+    /* Navigation Bar */
+    nav .logo {
+        font-size: 1.6rem;
+    }
+
+    .nav-links li {
+        margin: 0 20px;
+    }
+
+    /* Main Content Sections */
+    .section-title {
+        font-size: 3rem;
+    }
+
+    .intro-paragraph {
+        font-size: 1.2rem;
+    }
+
+    .content-grid {
+        grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); /* Larger columns on desktop */
+        gap: 40px;
+        padding: 50px;
+    }
+
+    .card h2 {
+        font-size: 2rem;
+    }
+
+    /* Achievement cards (from Home page) */
+    .achievement-card h2 {
+        font-size: 3rem; /* Even larger numbers */
+    }
+    .achievement-card p {
+        font-size: 1.25rem;
+    }
+
+    /* Login Page */
+    .form-container-centered .section-title {
+        font-size: 3.5rem;
+    }
+
+    /* Why Us Page (Values & Statements) */
+    .content-grid.two-column-values {
+        grid-template-columns: repeat(2, 1fr); /* Force 2 columns for values section */
+    }
+
+    .value-card {
+        padding: 30px 20px;
+    }
+
+    .value-card h2 {
+        font-size: 1.8rem;
+    }
+
+    .value-display {
+        font-size: 3rem;
+    }
+
+    .statement-text {
+        font-size: 1.3rem;
+    }
+
+    /* Make mission/vision statements span two columns on desktop */
+    .wide-card-value {
+        grid-column: span 2;
+    }
+}
+</style>
+</head>
+<body>
+    <nav>
+        <p class="logo"><i class="fa fa-graduation-cap"></i>Sister Michaela <br>
+            Girls Secondary <br> School
+        </p>
+        <div class="menu-toggle" id="mobile-menu">
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+        </div>
+        <ul class="nav-links">
+            <li><a href="/homepage">Home</a></li>
+            <li><a href="/about">About</a></li>
+            <li><a href="/academics">Academics</a></li>
+            <li><a href="/schoollife">School life</a></li>
+        </ul>
+        <div class="nav-buttons">
+            <button class="btn primary-btn"><a href="resume.pdf" download>Apply Now</a></button>
+            <button class="btn secondary-btn"><a href="/logout">Logout</a></button>
+        </div>
+    </nav>
+    
+    <main>
+        <h1 class="section-title">Our Mission</h1>
+        <div class="content-grid two-column-cards"> <section class="card">
+                <h2>Our Commitment</h2>
+                <p>At Sister Michaela Girls' School, we are committed to being a leading
+                    and caring child-centered Christian educational institution that develops the
+                    intellectual, spiritual, emotional, and physical potential of each student.
+                    We strive to create confident, compassionate, and capable young women who
+                    will make a positive impact in their communities and the world.</p>
+                <ul>
+                    <li>Develop critical thinking and problem-solving skills.</li>
+                    <li>Foster creativity and innovation in all areas of learning.</li>
+                    <li>Encourage social responsibility and global citizenship.</li>
+                </ul>
+            </section>
+            <section class="card">
+                <h2>Why Choose Us?</h2>
+                <p>At our school, we don't just educate — we inspire. We are committed to academic excellence, personal growth,
+                    and values-based learning. Our dedicated staff, supportive environment,
+                    and strong faith foundation empower every student to discover their full potential.
+                    With a track record of outstanding performance, a variety of co-curricular activities,
+                    and a nurturing community, we offer a well-rounded education
+                    that prepares learners for success in life — not just in exams.
+                    Choose us for a future built on knowledge, character, and confidence.</p>
+            </section>
+        </div>
+
+        <h1 class="section-title">Our Values & Targets</h1>
+        <div class="content-grid two-column-values">
+            <section class="card value-card">
+                <h2>MOTTO</h2>
+                <p class="value-display">Love of Knowledge</p>
+            </section>
+            <section class="card value-card">
+                <h2>KCSE MEAN TARGET</h2>
+                <p class="value-display">7.384</p>
+            </section>
+            <section class="card value-card wide-card-value">
+                <h2>OUR MISSION STATEMENT</h2>
+                <p class="statement-text">To be a leading and caring child-centered <br>Christian Educational Institution.</p>
+            </section>
+            <section class="card value-card wide-card-value">
+                <h2>OUR VISION STATEMENT</h2>
+                <p class="statement-text">To develop an all-round person <br>able to stand out in the community.</p>
+            </section>
+        </div>
+    </main>
+
+    <footer>
+        <div class="footer-container">
+            <div class="footer-info">
+                <h3>Contact Us</h3>
+                <p><i class="fa fa-map-marker"></i> Sister Michaela Girls Secondary School,<br>Kisii County, Kenya</p>
+                <p><i class="fa fa-phone"></i> +254 717766093</p>
+                <p><i class="fa fa-envelope"></i> srmichaela@gmail.com</p>
+                <p>Address: P.O BOX 1721-40200, Kisii</p>
+            </div>
+            <div class="footer-links">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="/homepage">Home</a></li>
+                    <li><a href="/about">About</a></li>
+                    <li><a href="/academics">Academics</a></li>
+                    <li><a href="/schoollife">School Life</a></li>
+                    </ul>
+            </div>
+        </div>
+        <p class="copyright">
+            &copy; 2025 Sister Michaela Girls School. All rights reserved.
+        </p>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const mobileMenu = document.getElementById('mobile-menu');
+            const navLinks = document.querySelector('.nav-links');
+            const navButtons = document.querySelector('.nav-buttons');
+
+            if (mobileMenu && navLinks && navButtons) {
+                mobileMenu.addEventListener('click', function() {
+                    navLinks.classList.toggle('active');
+                    navButtons.classList.toggle('active');
+                    mobileMenu.classList.toggle('is-active'); // For hamburger animation
+                });
+
+                // Optional: Close menu when a link is clicked
+                document.querySelectorAll('.nav-links li a').forEach(item => {
+                    item.addEventListener('click', () => {
+                        navLinks.classList.remove('active');
+                        navButtons.classList.remove('active');
+                        mobileMenu.classList.remove('is-active');
+                    });
+                });
+            }
+        });
+    </script>
+</body>
+</html>
